@@ -14,10 +14,12 @@ print_message() {
     echo -e "$(TZ=":Asia/Kolkata" date +'%Y-%m-%d %H:%M:%S IST') ${color}${message}${NC}"
 }
 
-# Step 1: Create a folder with current DateTimeStamp in IST format
-folder_name=$(TZ=":Asia/Kolkata" date +'%Y-%m-%d_%H-%M-%S')
-print_message "$CYAN" "📁 Creating folder: $folder_name"
-mkdir "$folder_name"
+# Step 1: Create a folder structure with the specified format
+current_date=$(TZ=":Asia/Kolkata" date +'%-d %b %Y')
+current_time=$(TZ=":Asia/Kolkata" date +'%-l_%M %p')
+folder_name="$current_date/$current_time"
+print_message "$CYAN" "📁 Creating folder structure: $folder_name"
+mkdir -p "$folder_name"
 
 # Step 2: Change directory to the created folder
 print_message "$CYAN" "📂 Changing directory to: $folder_name"
